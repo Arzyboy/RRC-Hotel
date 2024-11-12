@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #fffb00;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.room {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+.room {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.room img {
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.room h3 {
+    margin-top: 0;
+}
+
+

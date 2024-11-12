@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .invoice-container {
+            background-color: #ffffff;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+        .invoice-container h2 {
+            text-align: center;
+            color: #333;
+        }
+        .invoice-item {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .total-price {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 1.2em;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .order-number {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function generateOrderNumber() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let orderNumber = '';
+            for (let i = 0; i < 8; i++) {
+                orderNumber += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return orderNumber;
+        }
+
+        function loadInvoiceData() {
+            const email = localStorage.getItem("bookingEmail");
+            const name = localStorage.getItem("bookingName");
+            const phone = localStorage.getItem("bookingPhone");
+            const checkin = localStorage.getItem("bookingCheckin");
+            const checkout = localStorage.getItem("bookingCheckout");
+            const roomType = localStorage.getItem("bookingRoomType");
+            const price = localStorage.getItem("bookingPrice");
+
+            document.getElementById("invoiceEmail").textContent = email;
+            document.getElementById("invoiceName").textContent = name;
+            document.getElementById("invoicePhone").textContent = phone;
+            document.getElementById("invoiceCheckin").textContent = checkin;
+            document.getElementById("invoiceCheckout").textContent = checkout;
+            document.getElementById("invoiceRoomType").textContent = roomType;
+            document.getElementById("invoicePrice").textContent = "$" + price;
+
+            const orderNumber = generateOrderNumber();
+            document.getElementById("orderNumber").textContent = "Order Number: " + orderNumber;
+        }
+    </script>
+</head>
+<body onload="loadInvoiceData()">
+
+<div class="invoice-container">
+    <h2>Invoice</h2>
+    <div class="order-number" id="orderNumber"></div>
+    <div class="invoice-item"><strong>Email:</strong> <span id="invoiceEmail"></span></div>
+    <div class="invoice-item"><strong>Nama Pemesan :</strong> <span id="invoiceName"></span></div>
+    <div class="invoice-item"><strong>Nomor Telepon:</strong> <span id="invoicePhone"></span></div>
+    <div class="invoice-item"><strong>Jenis Kamar:</strong> <span id="invoiceRoomType"></span></div>
+    <div class="invoice-item"><strong>Tanggal Check-In:</strong> <span id="invoiceCheckin"></span></div>
+    <div class="invoice-item"><strong>Tanggal Check-Out:</strong> <span id="invoiceCheckout"></span></div>
+    <div class="total-price">Harga per Malam: <span id="invoicePrice"></span></div>
+</div>
+
+</body>
+</html>

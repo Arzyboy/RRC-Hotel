@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presidential Suite</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding-top: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            color: #333;
+        }
+        .main-image {
+            width: 50%; /* Mengatur lebar gambar utama */
+            max-width: 500px; /* Maksimal lebar gambar */
+            max-height: 300px; /* Maksimal tinggi gambar */
+            object-fit: cover; /* Menjaga proporsi gambar */
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .thumbnail {
+            width: 150px;
+            height: 100px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+        .info-section {
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        .info-item {
+            padding: 10px;
+        }
+        .price-section {
+            text-align: center;
+            font-size: 1.5em;
+            color: #333;
+            margin-top: 20px;
+        }
+        .booking-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 15px;
+            font-size: 1em;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .booking-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function changeMainImage(src) {
+            document.getElementById("mainImage").src = src;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Presidential Suite</h1>
+    
+    <!-- Main Image -->
+    <img id="mainImage" src="/static/images/Presidential main.jpg" alt="Presidential Two Bedroom" class="main-image">
+
+    <!-- Thumbnail Images -->
+    <div class="thumbnail-container">
+        <img src="/static/images/Presidential 1.jpg" class="thumbnail" onclick="changeMainImage('/static/images/Presidential 1.jpg')" alt="Thumbnail 1"> 
+        <img src="/static/images/Presidential 2.jpg" class="thumbnail" onclick="changeMainImage('/static/images/Presidential 2.jpg')" alt="Thumbnail 2">
+        <img src="/static/images/Presidential 3.jpg" class="thumbnail" onclick="changeMainImage('/static/images/Presidential 3.jpg')" alt="Thumbnail 3">
+        <img src="/static/images/Presidential main.jpg" class="thumbnail" onclick="changeMainImage('/static/images/Presidential main.jpg')" alt="Thumbnail 4">
+        <img src="/static/images/Presidential 4.jpg" class="thumbnail" onclick="changeMainImage('/static/images/Presidential 4.jpg')" alt="Thumbnail 5">
+    </div>
+
+    <!-- Room Information -->
+    <div class="info-section">
+        <div class="info-item">
+            <img src="/static/images/icon/guest.png" alt="Max Guests" style="width: 30px;">
+            <p>Max Guests: 4</p>
+        </div>
+        <div class="info-item">
+            <img src="/static/images/icon/calendar.png" alt="Min Booking Nights" style="width: 30px;">
+            <p>Min. Booking Nights: 1</p>
+        </div>
+        <div class="info-item">
+            <img src="/static/images/icon/bed.png" alt="King Bed" style="width: 30px;">
+            <p>King Bed</p>
+        </div>
+        <div class="info-item">
+            <img src="/static/images/icon/size.png" alt="Room Size" style="width: 30px;">
+            <p>85 m²</p>
+        </div>
+    </div>
+
+    <!-- Facilities Section -->
+    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div>
+            <span>&#128065;</span> Private Balcony
+        </div>
+        <div>
+            <span>&#128703;</span> Rain Shower
+        </div>
+        <div>
+            <span>&#128716;</span> 2 Suites
+        </div>
+        <div>
+            <span>&#127860;</span> Breakfast
+        </div>
+        <div>
+            <span>&#128705;</span> Hot Water
+        </div>
+        <div>
+            <span>&#128274;</span> Safe Box
+        </div>
+        <div>
+            <span>&#10052;</span> Air Conditioner
+        </div>
+        <div>
+            <span>&#10084;</span> Beautiful Decor
+        </div>
+        <div>
+            <span>&#128246;</span> Wi-Fi
+        </div>
+    </div>
+
+
+    <!-- Price Section -->
+    <div class="price-section">
+        <p>Rp.70.000.000/malam</p>
+    </div>
+
+    <!-- Booking Button -->
+    <a href="booking.html" class="booking-button">Book Now</a>
+
+</div>
+
+<style>
+    /* Style untuk tombol live chat */
+    #chat-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #fe3902;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    #chat-button:hover {
+        transform: scale(1.1);
+    }
+
+    /* Style untuk popup chat */
+    #chat-popup {
+        display: none;
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 300px;
+        max-width: 90%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        background-color: white;
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    #chat-popup h4 {
+        margin: 0 0 10px;
+        color: #333;
+    }
+
+    #chat-popup input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #close-chat {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        color: #333;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Button Live Chat -->
+<div id="chat-button">💬</div>
+
+<!-- Popup Live Chat -->
+<div id="chat-popup">
+    <span id="close-chat">&times;</span>
+    <h4>Live Chat</h4>
+    <p>Selamat datang! Bagaimana kami dapat membantu Anda?</p>
+    <input type="text" placeholder="Ketik pesan Anda...">
+</div>
+
+<script>
+    // Menampilkan popup chat saat tombol diklik
+    document.getElementById("chat-button").addEventListener("click", function() {
+        document.getElementById("chat-popup").style.display = "block";
+    });
+
+    // Menutup popup chat saat tombol close diklik
+    document.getElementById("close-chat").addEventListener("click", function() {
+        document.getElementById("chat-popup").style.display = "none";
+    });
+
+    // Menutup popup saat mengklik di luar area popup
+    window.addEventListener("click", function(event) {
+        if (event.target == document.getElementById("chat-popup")) {
+            document.getElementById("chat-popup").style.display = "none";
+        }
+    });
+</script>
+
+</body>
+</html>

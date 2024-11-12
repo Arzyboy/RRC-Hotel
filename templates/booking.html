@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .booking-form {
+            background-color: #ffffff;
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .booking-form h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function saveBookingData() {
+            const email = document.getElementById("email").value;
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const checkin = document.getElementById("checkin").value;
+            const checkout = document.getElementById("checkout").value;
+            const roomType = document.getElementById("roomType").value;
+
+            // Harga berdasarkan jenis kamar
+            let price;
+            switch (roomType) {
+                case "Deluxe Room":
+                    price = 150;
+                    break;
+                case "Suite Room":
+                    price = 250;
+                    break;
+                case "Executive Room":
+                    price = 350;
+                    break;
+                    case "Presidential Suite":
+                    price = 500;
+                    break;
+                default:
+                    price = 150;
+            }
+
+            // Simpan data ke localStorage
+            localStorage.setItem("bookingEmail", email);
+            localStorage.setItem("bookingName", name);
+            localStorage.setItem("bookingPhone", phone);
+            localStorage.setItem("bookingCheckin", checkin);
+            localStorage.setItem("bookingCheckout", checkout);
+            localStorage.setItem("bookingRoomType", roomType);
+            localStorage.setItem("bookingPrice", price);
+
+            // Redirect ke halaman invoice
+            window.location.href = "invoice.html";
+        }
+    </script>
+</head>
+<body>
+
+<div class="booking-form">
+    <div class="logo-container">
+        <img src="/static/images/logo.png" style="width:40%">
+    </div>
+    <form onsubmit="saveBookingData(); return false;">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="name">Nama Pemesan:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Nomor Telepon:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="checkin">Tanggal Check-In:</label>
+            <input type="date" id="checkin" name="checkin" required>
+        </div>
+
+        <div class="form-group">
+            <label for="checkout">Tanggal Check-Out:</label>
+            <input type="date" id="checkout" name="checkout" required>
+        </div>
+
+        <div class="form-group">
+            <label for="roomType">Jenis Kamar:</label>
+            <select id="roomType" name="roomType" required>
+                <option value="Deluxe Room">Deluxe Room - $150 per night</option>
+                <option value="Suite Room">Suite Room - $250 per night</option>
+                <option value="Executive Room">Executive Suite - $350 per night</option>
+                <option value="Presidential Suite">Presidential Suite - $500 per night</option>
+            </select>
+        </div>
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRC Hotel</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background-color: #f8f8f8; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <div>
+            <img src="/static/images/logo.png" alt="RRC Hotel Logo" style="width: 100px; height: auto;">
+        </div>
+        <nav style="display: flex; gap: 15px;">
+            <span id="user-info" style="color: #333; font-weight: bold; display: none;"></span>
+            <a href="#" id="login-button" style="text-decoration: none; color: #333; font-weight: bold;">Login</a>
+            <a href="/contact" style="text-decoration: none; color: #333; font-weight: bold;">Contact</a>
+            <a href="https://tkpjxwsn-8080.asse.devtunnels.ms/" style="text-decoration: none; color: #333; font-weight: bold;">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        {{ template "content" . }}
+    </main>
+
+    <footer>
+        <p>©RRC Hotel Website</p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center;">
+        <div style="background: white; padding: 20px; border-radius: 8px; width: 300px; text-align: center; position: relative;">
+            <h2 id="modal-title">Login</h2>
+            <input type="text" id="username-email" placeholder="Username or Email" style="width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="password" id="password" placeholder="Password" style="width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+            <button id="login-submit" style="width: 100%; padding: 10px; background-color: #fe3902; color: white; border: none; border-radius: 5px;">Login</button>
+            <button id="switch-signup" style="margin-top: 10px; background: none; border: none; color: #fe3902; cursor: pointer;">Don't have an account? Sign Up</button>
+            <button id="close-login" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 18px; cursor: pointer;">&times;</button>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signup-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center;">
+        <div style="background: white; padding: 20px; border-radius: 8px; width: 300px; text-align: center; position: relative;">
+            <h2>Sign Up</h2>
+            <input type="text" id="signup-username" placeholder="Username" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="email" id="signup-email" placeholder="Email" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="password" id="signup-password" placeholder="Password" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+            <button id="signup-submit" style="width: 100%; padding: 10px; background-color: #fe3902; color: white; border: none; border-radius: 5px;">Sign Up</button>
+            <button id="close-signup" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 18px; cursor: pointer;">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        // Menampilkan modal login atau signup saat tombol Login diklik
+        document.getElementById("login-button").addEventListener("click", function(event) {
+            event.preventDefault();
+            if (localStorage.getItem("isLoggedIn")) {
+                // Logout jika pengguna sudah login
+                localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("loggedInUser");
+                alert("You have been logged out.");
+                document.getElementById("login-button").innerText = "Login";
+                document.getElementById("user-info").style.display = "none";
+            } else {
+                // Tampilkan modal login jika belum login
+                document.getElementById("login-modal").style.display = "flex";
+            }
+        });
+
+        // Menutup modal login
+        document.getElementById("close-login").addEventListener("click", function() {
+            document.getElementById("login-modal").style.display = "none";
+        });
+
+        // Menutup modal signup
+        document.getElementById("close-signup").addEventListener("click", function() {
+            document.getElementById("signup-modal").style.display = "none";
+        });
+
+        // Beralih ke modal Sign Up
+        document.getElementById("switch-signup").addEventListener("click", function() {
+            document.getElementById("login-modal").style.display = "none";
+            document.getElementById("signup-modal").style.display = "flex";
+        });
+
+        // Proses login
+        document.getElementById("login-submit").addEventListener("click", function() {
+            const usernameEmail = document.getElementById("username-email").value;
+            const password = document.getElementById("password").value;
+
+            // Cek apakah ada username atau email yang cocok
+            const username = localStorage.getItem("username_" + usernameEmail) || localStorage.getItem("email_" + usernameEmail);
+            const savedPassword = localStorage.getItem("password_" + username);
+
+            if (username && savedPassword === password) {
+                localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("loggedInUser", username);
+                alert("Login successful!");
+                document.getElementById("login-modal").style.display = "none";
+                document.getElementById("login-button").innerText = "Logout";
+                document.getElementById("user-info").innerText = "Hello, " + username;
+                document.getElementById("user-info").style.display = "block";
+            } else {
+                alert("Invalid username or password.");
+            }
+        });
+
+        // Proses signup
+        document.getElementById("signup-submit").addEventListener("click", function() {
+            const username = document.getElementById("signup-username").value;
+            const email = document.getElementById("signup-email").value;
+            const password = document.getElementById("signup-password").value;
+
+            if (localStorage.getItem("username_" + username) || localStorage.getItem("email_" + email)) {
+                alert("Username or email already taken.");
+            } else {
+                localStorage.setItem("username_" + username, username);
+                localStorage.setItem("email_" + email, username);
+                localStorage.setItem("password_" + username, password);
+                alert("Sign up successful! You can now login.");
+                document.getElementById("signup-modal").style.display = "none";
+                document.getElementById("login-modal").style.display = "flex";
+            }
+        });
+
+        // Cek status login pada saat halaman dimuat
+        window.addEventListener("load", function() {
+            if (localStorage.getItem("isLoggedIn")) {
+                const username = localStorage.getItem("loggedInUser");
+                document.getElementById("login-button").innerText = "Logout";
+                document.getElementById("user-info").innerText = "Hello, " + username;
+                document.getElementById("user-info").style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
