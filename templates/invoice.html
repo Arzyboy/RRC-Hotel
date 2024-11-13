@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice</title>
     <style>
+        /* CSS untuk tampilan umum */
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
@@ -30,7 +31,7 @@
             margin-bottom: 40px;
         }
         .logo img {
-            max-width: 150px; /* Sesuaikan ukuran logo */
+            max-width: 150px;
             height: auto;
         }
         .invoice-container h2 {
@@ -91,6 +92,14 @@
         .button:hover {
             opacity: 0.8;
         }
+    
+        /* CSS untuk media print */
+        @media print {
+            .buttons-container {
+                display: none; /* Menyembunyikan tombol saat mencetak */
+            }
+        }
+    </style>
     </style>
     <script>
         function generateOrderNumber() {
