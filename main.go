@@ -16,7 +16,7 @@ func main() {
 	r.LoadHTMLGlob("templates/*.html")
 
 	// Routing untuk halaman Utama
-	r.GET("", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "layout.html", gin.H{
 			"content": "rooms.html",
 		})

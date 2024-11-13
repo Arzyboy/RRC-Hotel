@@ -17,11 +17,12 @@
         }
         .booking-form {
             background-color: #ffffff;
-            width: 90%;
+            width: 100%;
             max-width: 500px;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box; /* Menjamin padding tidak menambah ukuran elemen */
         }
         .logo-container {
             display: flex;
@@ -34,6 +35,7 @@
         }
         .form-group {
             margin-bottom: 15px;
+            padding: 0 10px; /* Menambahkan padding kiri dan kanan untuk margin yang rata */
         }
         label {
             display: block;
@@ -50,6 +52,11 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1em;
+            margin-top: 5px; /* Menambahkan sedikit jarak antara label dan input */
+        }
+        select {
+            padding: 8px; /* Menambahkan padding yang sama dengan input */
+            box-sizing: border-box; /* Pastikan padding tidak menambah ukuran elemen */
         }
         .submit-button {
             width: 100%;
@@ -65,6 +72,21 @@
         .submit-button:hover {
             background-color: #0056b3;
         }
+        .back-button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            color: white;
+            background-color: #fe3902;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px; /* Memberikan jarak antar tombol */
+        }
+        .back-button:hover {
+            background-color: #d32f2f;
+        }
     </style>
     <script>
         function saveBookingData() {
@@ -74,26 +96,26 @@
             const checkin = document.getElementById("checkin").value;
             const checkout = document.getElementById("checkout").value;
             const roomType = document.getElementById("roomType").value;
-
+        
             // Harga berdasarkan jenis kamar
             let price;
             switch (roomType) {
                 case "Deluxe Room":
-                    price = 150;
+                    price = 5000000;
                     break;
                 case "Suite Room":
-                    price = 250;
+                    price = 10000000;
                     break;
                 case "Executive Room":
-                    price = 350;
+                    price = 20000000;
                     break;
-                    case "Presidential Suite":
-                    price = 500;
+                case "Presidential Suite":
+                    price = 35000000;
                     break;
                 default:
-                    price = 150;
+                    price = 5000000;
             }
-
+        
             // Simpan data ke localStorage
             localStorage.setItem("bookingEmail", email);
             localStorage.setItem("bookingName", name);
@@ -102,9 +124,18 @@
             localStorage.setItem("bookingCheckout", checkout);
             localStorage.setItem("bookingRoomType", roomType);
             localStorage.setItem("bookingPrice", price);
-
+        
+            // Debug log
+            console.log("Booking Data Saved: ", email, name, phone, checkin, checkout, roomType, price);
+        
             // Redirect ke halaman invoice
-            window.location.href = "invoice.html";
+            window.location.href = "invoice.html"; // Pastikan URL benar
+        }
+        
+
+        function goBack() {
+            // Fungsi untuk kembali ke halaman sebelumnya
+            window.history.back();
         }
     </script>
 </head>
@@ -143,16 +174,19 @@
         <div class="form-group">
             <label for="roomType">Jenis Kamar:</label>
             <select id="roomType" name="roomType" required>
-                <option value="Deluxe Room">Deluxe Room - $150 per night</option>
-                <option value="Suite Room">Suite Room - $250 per night</option>
-                <option value="Executive Room">Executive Suite - $350 per night</option>
-                <option value="Presidential Suite">Presidential Suite - $500 per night</option>
+                <option value="Deluxe Room">Deluxe Room - Rp.5.000.000/malam</option>
+                <option value="Suite Room">Suite Room - Rp.10.000.000/malam</option>
+                <option value="Executive Room">Executive Suite - Rp.20.000.000/malam</option>
+                <option value="Presidential Suite">Presidential Suite - Rp.35.000.000/malam</option>
             </select>
         </div>
 
         <button type="submit" class="submit-button">Submit</button>
+        <!-- Tombol Kembali -->
+        <button type="button" class="back-button" onclick="goBack()">Kembali</button>
     </form>
 </div>
 
 </body>
 </html>
+

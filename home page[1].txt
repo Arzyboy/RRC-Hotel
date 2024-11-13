@@ -1,0 +1,11 @@
+home page
+header = gambar dan font (about hotel)
+
+sign up = marginnya kurang pas
+
+contact = taruh Bawah
+
+
+booking = sejajarkan margin dengan yg jenis kamar. button back/home
+
+invoice = sejajarkan titik dua.

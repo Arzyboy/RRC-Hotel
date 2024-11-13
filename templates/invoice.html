@@ -17,34 +17,79 @@
         }
         .invoice-container {
             background-color: #ffffff;
-            width: 90%;
-            max-width: 600px;
-            padding: 20px;
+            width: 100%;
+            max-width: 700px;
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: left;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .logo img {
+            max-width: 150px; /* Sesuaikan ukuran logo */
+            height: auto;
         }
         .invoice-container h2 {
-            text-align: center;
             color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: bold;
         }
-        .invoice-item {
-            margin-bottom: 10px;
-            font-size: 1.1em;
+        .order-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .invoice-table th, .invoice-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .invoice-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
         }
         .total-price {
             font-weight: bold;
             color: #007bff;
-            font-size: 1.2em;
-            margin-top: 20px;
-            text-align: center;
+            font-size: 1.3em;
+            text-align: left;
+            padding: 15px 0;
         }
-        .order-number {
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 20px;
+        .buttons-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button.print-btn {
+            background-color: #28a745;
+            width: 48%;
+        }
+        .button.home-btn {
+            background-color: #007bff;
+            width: 48%;
+        }
+        .button:hover {
+            opacity: 0.8;
         }
     </style>
     <script>
@@ -72,25 +117,65 @@
             document.getElementById("invoiceCheckin").textContent = checkin;
             document.getElementById("invoiceCheckout").textContent = checkout;
             document.getElementById("invoiceRoomType").textContent = roomType;
-            document.getElementById("invoicePrice").textContent = "$" + price;
+            document.getElementById("invoicePrice").textContent = "Rp " + parseInt(price).toLocaleString();
 
             const orderNumber = generateOrderNumber();
             document.getElementById("orderNumber").textContent = "Order Number: " + orderNumber;
+        }
+
+        function printInvoice() {
+            window.print();
+        }
+
+        function goHome() {
+            window.location.href = "booking.html"; // Ubah sesuai URL halaman utama
         }
     </script>
 </head>
 <body onload="loadInvoiceData()">
 
 <div class="invoice-container">
-    <h2>Invoice</h2>
+    <div class="logo">
+        <!-- Tempatkan logo Anda di sini -->
+        <img src="/static/images/logo.png" alt="Logo Perusahaan">
+    </div>
+
+    <h2>Invoice Pembayaran</h2>
     <div class="order-number" id="orderNumber"></div>
-    <div class="invoice-item"><strong>Email:</strong> <span id="invoiceEmail"></span></div>
-    <div class="invoice-item"><strong>Nama Pemesan :</strong> <span id="invoiceName"></span></div>
-    <div class="invoice-item"><strong>Nomor Telepon:</strong> <span id="invoicePhone"></span></div>
-    <div class="invoice-item"><strong>Jenis Kamar:</strong> <span id="invoiceRoomType"></span></div>
-    <div class="invoice-item"><strong>Tanggal Check-In:</strong> <span id="invoiceCheckin"></span></div>
-    <div class="invoice-item"><strong>Tanggal Check-Out:</strong> <span id="invoiceCheckout"></span></div>
+
+    <table class="invoice-table">
+        <tr>
+            <th>Email</th>
+            <td id="invoiceEmail"></td>
+        </tr>
+        <tr>
+            <th>Nama Pemesan</th>
+            <td id="invoiceName"></td>
+        </tr>
+        <tr>
+            <th>Nomor Telepon</th>
+            <td id="invoicePhone"></td>
+        </tr>
+        <tr>
+            <th>Jenis Kamar</th>
+            <td id="invoiceRoomType"></td>
+        </tr>
+        <tr>
+            <th>Tanggal Check-In</th>
+            <td id="invoiceCheckin"></td>
+        </tr>
+        <tr>
+            <th>Tanggal Check-Out</th>
+            <td id="invoiceCheckout"></td>
+        </tr>
+    </table>
+
     <div class="total-price">Harga per Malam: <span id="invoicePrice"></span></div>
+
+    <div class="buttons-container">
+        <button class="button print-btn" onclick="printInvoice()">Print Invoice</button>
+        <button class="button home-btn" onclick="goHome()">Back</button>
+    </div>
 </div>
 
 </body>

@@ -1,5 +1,6 @@
 {{ define "content" }}
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -29,12 +30,12 @@
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         cursor: pointer;
-        padding: 10px; /* Menambahkan padding untuk mengecilkan gambar */
+        padding: 10px;
     }
     .card img {
         width: 100%;
-        max-height: 150px; /* Membatasi tinggi maksimum gambar */
-        object-fit: cover; /* Menjaga proporsi gambar */
+        max-height: 150px;
+        object-fit: cover;
         transition: transform 0.3s ease;
     }
     .card:hover img {
@@ -58,11 +59,19 @@
     .card:hover .overlay {
         opacity: 1;
     }
+    /* Style untuk teks welcome agar menggunakan font Merriweather */
+    .welcome-text {
+        text-align: center;
+        font-family: 'Merriweather', serif;
+        font-size: 1.2em;
+        color: #333;
+        margin-top: 20px;
+    }
 </style>
 
-<div class="wpb_text_column wpb_content_element">
-    <div class="wpb_wrapper">
-        <h3 style="text-align: center;">Hotel kami menawarkan kenyamanan modern dengan kamar yang elegan, dilengkapi fasilitas lengkap, dan pemandangan indah. Lokasinya strategis di pusat kota, dekat dengan berbagai destinasi wisata dan pusat perbelanjaan. Layanan ramah dan berkualitas siap menjadikan pengalaman menginap Anda tak terlupakan.</h3>
+
+    <div class="wpb_wrapper welcome-text">
+        <h3>Selamat datang di tempat di mana kenyamanan bertemu dengan kemewahan. Didesain dengan sentuhan elegan dan pelayanan istimewa, hotel kami adalah pilihan sempurna untuk pengalaman menginap yang tak terlupakan.</h3>
     </div>
 
     <style>
@@ -71,7 +80,6 @@
             font-weight: bold;
             text-align: center;
         }
-
         #btn-1DCy4 {
             background: #ffffff;
             border-style: solid;
@@ -84,32 +92,12 @@
             line-height: 15px;
             font-weight: bold;
         }
-
         #btn-1DCy4:hover {
             background: #fe3902;
             border-color: #fe3902;
             color: #ffffff;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.10);
             transform: translateY(-2px);
-        }
-
-        #btn-1DCy4 i {
-            right: 14px;
-            margin-top: 0;
-            vertical-align: middle;
-            border-radius: 50%;
-            line-height: 20px;
-            height: 20px;
-            width: 20px;
-            margin-left: 8px;
-            margin-right: 0;
-            color: #ffffff;
-            font-size: 8px;
-            text-align: center;
-        }
-
-        #btn-1DCy4:hover i {
-            background: #ffffff;
         }
     </style>
 
@@ -122,32 +110,40 @@
     <h1>OUR ROOMS</h1> 
     <div class="grid">
         <!-- Card 1 -->
-        <div class="card" onclick="window.location.href='https://tkpjxwsn-8000.asse.devtunnels.ms/templates/deluxe.html';">
+        <div class="card" onclick="redirectToTemplate('deluxe')">
             <img src="/static/images/deluxe room 2.jpg" alt="Deluxe Room">
             <div class="overlay">Deluxe Room</div>
         </div>
 
         <!-- Card 2 -->
-        <div class="card" onclick="window.location.href='https://tkpjxwsn-8000.asse.devtunnels.ms/templates/Suite.html';">
-            <img src="/static/images/Suite main.jpg" alt="Suite ">
+        <div class="card" onclick="redirectToTemplate('Suite')">
+            <img src="/static/images/Suite Main.jpg" alt="Suite Room">
             <div class="overlay">Suite Room</div>
         </div>
 
         <!-- Card 3 -->
-        <div class="card" onclick="window.location.href='https://tkpjxwsn-8000.asse.devtunnels.ms/templates/Executive.html';">
+        <div class="card" onclick="redirectToTemplate('Executive')">
             <img src="/static/images/Executive 3.jpg" alt="Executive Room">
             <div class="overlay">Executive Room</div>
         </div>
 
         <!-- Card 4 -->
-        <div class="card" onclick="window.location.href='https://tkpjxwsn-8000.asse.devtunnels.ms/templates/presidential.html';">
-            <img src="/static/images/Presidential 2.jpg" alt="Presidential Suite">
+        <div class="card" onclick="redirectToTemplate('Presidential')">
+            <img src="/static/images/Presidential 2.jpg" alt="Presidential suite">
             <div class="overlay">Presidential Suite</div>
         </div>
+        
+        <script>
+            function redirectToTemplate(roomType) {
+                const baseUrl = window.location.host.includes("localhost")
+                    ? "http://localhost:8000"
+                    : "https://tkpjxwsn-8000.asse.devtunnels.ms";
+                window.location.href = `${baseUrl}/templates/${roomType}.html`;
+            }
+        </script>
     </div>
-</div>
 
-<style>
+    <style>
     /* Style untuk tombol live chat */
     #chat-button {
         position: fixed;
@@ -217,7 +213,7 @@
 <div id="chat-popup">
     <span id="close-chat">&times;</span>
     <h4>Live Chat</h4>
-    <p>Selamat datang di RRC HotelBagaimana kami dapat membantu Anda?</p>
+    <p>Selamat datang di RRC Hotel!!! Bagaimana kami dapat membantu Anda?</p>
     <input type="text" placeholder="Ketik pesan Anda...">
 </div>
 
@@ -239,6 +235,10 @@
         }
     });
 </script>
+
+
+
+
 
 
 {{ end }}
