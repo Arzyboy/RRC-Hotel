@@ -14,7 +14,6 @@
         <nav style="display: flex; gap: 15px;">
             <span id="user-info" style="color: #333; font-weight: bold; display: none;"></span>
             <a href="#" id="login-button" style="text-decoration: none; color: #333; font-weight: bold;">Login</a>
-            <a href="/" style="text-decoration: none; color: #333; font-weight: bold;">Home</a>
         </nav>
     </header>
 
@@ -138,34 +137,59 @@
     .footer {
         background-color: #333;
         color: #fff;
-        padding: 15px; /* Mengurangi padding untuk mengecilkan footer */
+        padding: 15px;
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
         border-top: 3px solid #fe3902;
-        margin-top: 110px;
-    }
-    
-    .footer-column {
-        flex: 1;
-        min-width: 200px; /* Memperkecil lebar minimum */
-        margin-right: 15px;
+        margin-top: 200px;
     }
     
     .footer h1 {
-        font-size: 1.2em; /* Mengecilkan ukuran font untuk judul */
-        margin-bottom: 8px; /* Mengurangi jarak di bawah judul */
+        font-size: 1.4em;
+        margin-bottom: 15px;
         color: #fe3902;
         font-weight: 600;
+        text-align: center;
     }
     
-    .contact-info p, .social-links a {
-        font-size: 0.9em; /* Mengecilkan ukuran teks */
-        margin: 5px 0; /* Mengurangi jarak antar elemen */
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 700px;
+        flex-wrap: wrap;
+    }
+
+    .footer-column {
+        flex: 1;
+        min-width: 200px;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; 
+        text-align: left;
+    }
+    
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .contact-info p {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        font-size: 0.9em;
         line-height: 1.4;
+        margin: 5px 0;
     }
-    
+
+    .contact-info p span {
+        min-width: 80px; /* Lebar konsisten untuk teks sebelum titik dua */
+    }
+
     .footer p a, .social-links a {
         color: #fff;
         text-decoration: none;
@@ -175,54 +199,59 @@
     .footer p a:hover, .social-links a:hover {
         color: #fe3902;
     }
-    
-    /* Penataan ulang Social Media */
-    .footer .social-media {
-        margin-top: 0;
+
+    /* Styling untuk Social Media */
+    .social-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
     
     .social-links a {
-        display: block; /* Menampilkan setiap link sosial media pada baris baru */
-        margin-bottom: 5px; /* Memberi jarak antar link sosial media */
         font-size: 0.9em;
     }
     
     @media (max-width: 768px) {
-        .footer {
+        .footer-content {
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
         }
     
         .footer-column {
             min-width: auto;
-            padding: 10px;
             margin-right: 0;
+            padding: 10px;
         }
     }
-    
 </style>
 
 <div class="footer">
-    <!-- Contact Us Section -->
-    <div class="footer-column">
-        <h1>Contact Us</h1>
-        <div class="contact-info">
-            <p>Email: <a href="mailto:wirthotel@gmail.com">RRCHOTEL@gmail.com</a></p>
-            <p>Phone: +123456789</p>
-            <p>Location: Jl. Sudirman, Jakarta Selatan, Indonesia</p>
-        </div>
-    </div>
+    <!-- Judul Footer -->
+    <h1>Contact Us</h1>
 
-    <!-- Social Media Section -->
-    <div class="footer-column social-media">
-        <h1>Follow Us</h1>
-        <div class="social-links">
-            <a href="https://facebook.com" target="_blank">Facebook</a>
-            <a href="https://instagram.com" target="_blank">Instagram</a>
-            <a href="https://twitter.com" target="_blank">Twitter</a>
+    <!-- Konten Footer -->
+    <div class="footer-content">
+        <!-- Bagian Kontak -->
+        <div class="footer-column">
+            <div class="contact-info">
+                <p><span>Email   </span> <a href="mailto:RRCHOTEL@gmail.com">RRCHotel@gmail.com</a></p>
+                <p><span>Phone   </span> +123456789</p>
+                <p><span>Location</span> Jl. Sudirman, Jakarta Selatan, Indonesia</p>
+            </div>
+        </div>
+
+        <!-- Bagian Media Sosial -->
+        <div class="footer-column">
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 
